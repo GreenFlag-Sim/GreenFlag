@@ -47,9 +47,19 @@
     .practice { display:grid; grid-template-columns:1fr auto; gap:32px; align-items:center; margin-top:24px; padding:30px; border:1px solid #254330; background:#0b140e; }
     .practice h2 { margin:0 0 10px; font-size:25px; letter-spacing:-.04em; }
     .practice p { max-width:670px; margin:0; color:var(--muted); font-size:12px; line-height:1.8; }
+    .practice-actions { display:flex; flex-direction:column; align-items:flex-end; gap:14px; }
     .lap-count { color:var(--green); font:11px var(--mono); letter-spacing:.08em; white-space:nowrap; }
-    .site-footer { min-height:88px; display:flex; align-items:center; justify-content:space-between; gap:18px; border-top:1px solid var(--line); color:var(--subtle); font-size:10px; }
+    .next-link { white-space:nowrap; }
+    .site-footer { position:relative; min-height:88px; display:grid; grid-template-columns:1fr auto 1fr; align-items:center; gap:18px; border-top:1px solid var(--line); color:var(--subtle); font-size:10px; }
+    .site-footer > span { grid-column:1; grid-row:1; justify-self:start; }
+    .site-footer > a:not(.back-top) { grid-column:2; grid-row:1; justify-self:center; }
     .site-footer a:hover { color:var(--green); }
+    .back-top { position:fixed; z-index:30; right:24px; bottom:24px; display:inline-flex; align-items:center; gap:9px; padding:12px 14px; border:1px solid #455548; background:rgba(13,18,15,.96); color:var(--muted); font:10px var(--mono); letter-spacing:.08em; cursor:pointer; opacity:0; visibility:hidden; transform:translateY(8px); transition:opacity .2s ease,transform .2s ease,border-color .2s ease,color .2s ease,background .2s ease; backdrop-filter:blur(8px); }
+    .back-top.is-visible { opacity:1; visibility:visible; transform:translateY(0); }
+    .back-top.is-docked { position:static; grid-column:3; grid-row:1; justify-self:end; opacity:1; visibility:visible; transform:none; }
+    .back-top svg { width:15px; height:15px; flex:none; fill:none; stroke:var(--green); stroke-width:1.8; stroke-linecap:round; stroke-linejoin:round; }
+    .back-top:hover { border-color:var(--green); color:var(--green); }
+    @media(prefers-reduced-motion:reduce) { .back-top { transition:none; } }
     @media(max-width:700px) {
       .shell { width:calc(100% - 32px); }
       .site-header { height:72px; }
@@ -68,7 +78,11 @@
       .step h3 { margin-top:16px; }
       .corner-note { grid-template-columns:1fr; gap:13px; margin-top:28px; padding:22px; }
       .practice { grid-template-columns:1fr; gap:18px; margin-top:18px; padding:22px; }
-      .site-footer { min-height:100px; flex-wrap:wrap; padding-block:20px; }
+      .practice-actions { align-items:flex-start; }
+      .site-footer { min-height:100px; grid-template-columns:1fr auto; gap:15px; padding-block:20px; }
+      .site-footer > span { grid-column:1/-1; grid-row:1; }
+      .site-footer > a:not(.back-top) { grid-column:1; grid-row:2; justify-self:start; }
+      .back-top.is-docked { grid-column:2; grid-row:2; justify-self:end; }
     }
     @media(prefers-reduced-motion:reduce) { html { scroll-behavior:auto; } }
   </style>
@@ -107,9 +121,39 @@
         <article class="step"><span class="step-number">03 / BE SMOOTH</span><h3>Make one clean turn</h3><p>A useful starting point is to begin wide, move toward the inside near the middle, then let the car run back out. The best line can change with the corners around it.</p></article>
       </div>
       <aside class="corner-note" aria-labelledby="corner-note-title"><div><p class="eyebrow">READ THE WHOLE SECTION</p><h2 id="corner-note-title">Corners work together.</h2></div><p>The same turn can need a different line depending on what comes just before and after it. A previous corner may affect the side of the track you arrive from. If this turn leads onto a long straight, a later apex can help you get on the power sooner. If another turn follows quickly, you may need to give up a little space here to set up the next one. Look at the sequence, not just one corner at a time.</p></aside>
-      <div class="practice"><div><h2>A simple first practice</h2><p>Drive five laps at a comfortable pace. For the first few, focus on staying on track. Then choose one corner and try to brake at the same marker each lap. If you make a mistake, reset and try again—every lap is useful practice.</p></div><span class="lap-count">5 CALM LAPS ✳</span></div>
+      <div class="practice"><div><h2>A simple first practice</h2><p>Drive five laps at a comfortable pace. For the first few, focus on staying on track. Then choose one corner and try to brake at the same marker each lap. If you make a mistake, reset and try again—every lap is useful practice.</p></div><div class="practice-actions"><span class="lap-count">5 CALM LAPS ✳</span><a class="primary-link next-link" href="race-with-confidence.html" aria-label="Next page: Race with confidence">NEXT: RACE WITH CONFIDENCE <span aria-hidden="true">→</span></a></div></div>
     </section>
   </main>
-  <footer class="site-footer shell"><span>Made for the next generation of racers.</span><a href="index.html">BACK TO GREEN FLAG</a></footer>
+  <footer class="site-footer shell"><span>Made for the next generation of racers.</span><a href="index.html">BACK TO GREEN FLAG</a><button type="button" id="back-to-top" class="back-top" aria-label="Back to top"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 20V4M5 11l7-7 7 7"/></svg><span>BACK TO TOP</span></button></footer>
+  <script>
+    const backTopButton = document.querySelector('#back-to-top');
+    const pageFooter = document.querySelector('.site-footer');
+    const updateBackToTop = () => {
+      const visible = window.scrollY > 320;
+      const footerTop = pageFooter.getBoundingClientRect().top;
+      const shouldDock = visible && footerTop < window.innerHeight - 80;
+      backTopButton.classList.toggle('is-visible', visible);
+      const isDocked = backTopButton.classList.contains('is-docked');
+      if (shouldDock !== isDocked) {
+        const before = backTopButton.getBoundingClientRect();
+        backTopButton.classList.toggle('is-docked', shouldDock);
+        const after = backTopButton.getBoundingClientRect();
+        const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+        if (visible && !reducedMotion && typeof backTopButton.animate === 'function') {
+          backTopButton.animate([
+            { transform: `translate(${before.left - after.left}px, ${before.top - after.top}px)` },
+            { transform: 'translate(0, 0)' }
+          ], { duration: 360, easing: 'cubic-bezier(.22,.7,.2,1)' });
+        }
+      }
+    };
+    window.addEventListener('scroll', updateBackToTop, { passive: true });
+    window.addEventListener('resize', updateBackToTop);
+    backTopButton.addEventListener('click', () => {
+      const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+      window.scrollTo({ top: 0, behavior: reducedMotion ? 'auto' : 'smooth' });
+    });
+    updateBackToTop();
+  </script>
 </body>
 </html>

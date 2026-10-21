@@ -1,0 +1,195 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#101511">
+  <meta name="description" content="Beginner-friendly sim racing tips for clean starts, predictable driving, safe passes, and calmer races.">
+  <title>Race with Confidence — Green Flag</title>
+  <style>
+    :root { color-scheme:dark; --bg:#070a08; --panel:#0d120f; --ink:#f1f5ef; --muted:#9ba79d; --subtle:#68746b; --line:#26342a; --green:#00e676; --mono:ui-monospace,SFMono-Regular,Menlo,monospace; --sans:Inter,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif; }
+    * { box-sizing:border-box; }
+    html { scroll-behavior:smooth; }
+    body { margin:0; background:var(--bg); color:var(--ink); font-family:var(--sans); }
+    a { color:inherit; text-decoration:none; }
+    .shell { width:min(1120px,calc(100% - 48px)); margin-inline:auto; }
+    .site-header { height:82px; display:flex; align-items:center; justify-content:space-between; border-bottom:1px solid var(--line); }
+    .brand { display:flex; align-items:center; gap:12px; font-size:13px; font-weight:800; letter-spacing:.11em; }
+    .brand-mark { width:72px; height:36px; flex:none; }
+    .brand-mark svg { display:block; width:100%; height:100%; }
+    .brand-sub { display:block; margin-top:4px; color:var(--subtle); font:9px var(--mono); letter-spacing:.08em; }
+    .back-link { display:inline-flex; align-items:center; gap:10px; padding:12px 15px; border:1px solid var(--line); color:var(--muted); font:10px var(--mono); letter-spacing:.08em; }
+    .back-link:hover { border-color:var(--green); color:var(--green); }
+    .back-link svg,.text-arrow svg { width:14px; height:14px; fill:none; stroke:currentColor; stroke-width:1.8; stroke-linecap:round; stroke-linejoin:round; }
+    main { padding:72px 0 92px; }
+    .eyebrow { display:flex; align-items:center; gap:10px; margin:0 0 20px; color:var(--muted); font:10px var(--mono); letter-spacing:.12em; }
+    .eyebrow::before { content:""; width:8px; height:8px; border-radius:50%; background:var(--green); box-shadow:0 0 14px #00e67677; }
+    .hero { display:grid; grid-template-columns:1.05fr .95fr; gap:56px; align-items:center; padding-bottom:66px; border-bottom:1px solid var(--line); }
+    h1 { margin:0; max-width:650px; font-size:clamp(48px,7vw,82px); line-height:.98; letter-spacing:-.075em; }
+    h1 em,h2 em { color:var(--green); font-family:Georgia,serif; font-weight:400; }
+    .intro { max-width:600px; margin:22px 0 0; color:var(--muted); font-size:15px; line-height:1.85; }
+    .hero-actions { display:flex; flex-wrap:wrap; align-items:center; gap:12px; margin-top:26px; }
+    .primary-link,.secondary-link { display:inline-flex; align-items:center; justify-content:center; gap:10px; min-height:46px; padding:0 16px; font:10px var(--mono); letter-spacing:.06em; }
+    .primary-link { background:var(--green); color:#041008; font-weight:800; }
+    .primary-link:hover { background:#65ffa8; }
+    .secondary-link { border:1px solid var(--line); color:var(--muted); }
+    .secondary-link:hover { border-color:var(--green); color:var(--green); }
+    .race-panel { position:relative; overflow:hidden; padding:27px; border:1px solid var(--line); background:linear-gradient(145deg,#111812,#090d0a); }
+    .panel-top { display:flex; justify-content:space-between; align-items:center; gap:14px; padding-bottom:19px; border-bottom:1px solid var(--line); color:var(--subtle); font:9px var(--mono); letter-spacing:.12em; }
+    .panel-top strong { color:var(--green); font-weight:500; }
+    .race-step { display:grid; grid-template-columns:40px 1fr; gap:15px; align-items:start; padding:20px 0; border-bottom:1px solid var(--line); }
+    .race-step:last-child { padding-bottom:0; border-bottom:0; }
+    .step-mark { display:grid; place-items:center; width:34px; height:34px; border:1px solid #255638; border-radius:50%; color:var(--green); font:10px var(--mono); }
+    .race-step h2 { margin:1px 0 6px; font-size:16px; letter-spacing:-.03em; }
+    .race-step p { margin:0; color:var(--muted); font-size:11px; line-height:1.65; }
+    .guide { padding-top:56px; }
+    .section-head { display:flex; align-items:end; justify-content:space-between; gap:24px; margin-bottom:25px; }
+    .section-head h2 { margin:0; font-size:clamp(32px,4vw,48px); letter-spacing:-.06em; }
+    .section-head p { max-width:370px; margin:0; color:var(--muted); font-size:12px; line-height:1.75; }
+    .guide-grid { display:grid; grid-template-columns:repeat(3,1fr); gap:14px; }
+    .guide-card { min-height:220px; padding:23px; border:1px solid var(--line); background:var(--panel); }
+    .card-label { color:var(--green); font:10px var(--mono); letter-spacing:.1em; }
+    .guide-card h3 { margin:25px 0 10px; font-size:19px; letter-spacing:-.03em; }
+    .guide-card p { margin:0; color:var(--muted); font-size:12px; line-height:1.8; }
+    .pass-section { margin-top:58px; }
+    .pass-grid { display:grid; grid-template-columns:repeat(3,1fr); border:1px solid var(--line); background:#0a0e0b; }
+    .pass-step { min-height:176px; padding:23px; border-right:1px solid var(--line); }
+    .pass-step:last-child { border-right:0; }
+    .pass-step span { color:var(--green); font:10px var(--mono); letter-spacing:.1em; }
+    .pass-step h3 { margin:22px 0 9px; font-size:17px; }
+    .pass-step p { margin:0; color:var(--muted); font-size:11px; line-height:1.8; }
+    .incident { display:grid; grid-template-columns:.75fr 1.25fr; gap:32px; align-items:start; margin-top:28px; padding:27px 30px; border-left:2px solid var(--green); background:#0b100c; }
+    .incident .eyebrow { margin-bottom:13px; }
+    .incident h2 { margin:0; font-size:clamp(25px,3vw,34px); letter-spacing:-.05em; }
+    .incident-copy { margin:0; color:var(--muted); font-size:12px; line-height:1.85; }
+    .rule-note { margin:17px 0 0; padding-top:14px; border-top:1px solid var(--line); color:var(--subtle); font-size:10px; line-height:1.7; }
+    .practice { display:grid; grid-template-columns:1fr auto; gap:32px; align-items:center; margin-top:24px; padding:30px; border:1px solid #254330; background:#0b140e; }
+    .practice h2 { margin:0 0 10px; font-size:25px; letter-spacing:-.04em; }
+    .practice p { max-width:670px; margin:0; color:var(--muted); font-size:12px; line-height:1.8; }
+    .lap-count { color:var(--green); font:11px var(--mono); letter-spacing:.08em; white-space:nowrap; }
+    .text-arrow { display:inline-flex; align-items:center; gap:9px; margin-top:18px; color:var(--green); font:10px var(--mono); letter-spacing:.06em; }
+    .text-arrow:hover { color:#9dffc5; }
+    .site-footer { position:relative; min-height:88px; display:grid; grid-template-columns:1fr auto 1fr; align-items:center; gap:18px; border-top:1px solid var(--line); color:var(--subtle); font-size:10px; }
+    .site-footer > span { grid-column:1; grid-row:1; justify-self:start; }
+    .site-footer > a:not(.back-top) { grid-column:2; grid-row:1; justify-self:center; }
+    .site-footer a:hover { color:var(--green); }
+    .back-top { position:fixed; z-index:30; right:24px; bottom:24px; display:inline-flex; align-items:center; gap:9px; padding:12px 14px; border:1px solid #455548; background:rgba(13,18,15,.96); color:var(--muted); font:10px var(--mono); letter-spacing:.08em; cursor:pointer; opacity:0; visibility:hidden; transform:translateY(8px); transition:opacity .2s ease,transform .2s ease,border-color .2s ease,color .2s ease,background .2s ease; backdrop-filter:blur(8px); }
+    .back-top.is-visible { opacity:1; visibility:visible; transform:translateY(0); }
+    .back-top.is-docked { position:static; grid-column:3; grid-row:1; justify-self:end; opacity:1; visibility:visible; transform:none; }
+    .back-top svg { width:15px; height:15px; flex:none; fill:none; stroke:var(--green); stroke-width:1.8; stroke-linecap:round; stroke-linejoin:round; }
+    .back-top:hover { border-color:var(--green); color:var(--green); }
+    @media(prefers-reduced-motion:reduce) { .back-top { transition:none; } }
+    @media(max-width:700px) {
+      .shell { width:calc(100% - 32px); }
+      .site-header { height:72px; }
+      .brand { gap:8px; font-size:11px; }
+      .brand-mark { width:58px; height:30px; }
+      .brand-sub { font-size:7px; }
+      .back-link { padding:10px 11px; font-size:9px; }
+      main { padding:48px 0 68px; }
+      .hero { grid-template-columns:1fr; gap:28px; padding-bottom:46px; }
+      h1 { font-size:clamp(48px,13vw,70px); }
+      .intro { font-size:13px; }
+      .race-panel { padding:21px; }
+      .section-head { display:block; }
+      .section-head p { margin-top:13px; }
+      .guide-grid,.pass-grid { grid-template-columns:1fr; }
+      .guide-card { min-height:0; }
+      .guide-card h3 { margin-top:16px; }
+      .pass-step { min-height:0; border-right:0; border-bottom:1px solid var(--line); }
+      .pass-step:last-child { border-bottom:0; }
+      .pass-step h3 { margin-top:14px; }
+      .incident { grid-template-columns:1fr; gap:13px; margin-top:24px; padding:22px; }
+      .practice { grid-template-columns:1fr; gap:17px; margin-top:18px; padding:22px; }
+      .site-footer { min-height:100px; grid-template-columns:1fr auto; gap:15px; padding-block:20px; }
+      .site-footer > span { grid-column:1/-1; grid-row:1; }
+      .site-footer > a:not(.back-top) { grid-column:1; grid-row:2; justify-self:start; }
+      .back-top.is-docked { grid-column:2; grid-row:2; justify-self:end; }
+    }
+    @media(prefers-reduced-motion:reduce) { html { scroll-behavior:auto; } }
+  </style>
+</head>
+<body>
+  <header class="site-header shell">
+    <a class="brand" href="index.html" aria-label="Green Flag home">
+      <span class="brand-mark" aria-hidden="true"><svg viewBox="0 0 205 100" focusable="false"><g fill="none" stroke="var(--green)" stroke-width="10" stroke-linecap="round"><path d="M20 25h65M6 51h78M20 77h65"/></g><path d="M100 16h92l-20 27 20 27h-92z" fill="var(--green)"/><path d="M111 25h16v16h-16zm32 0h16v16h-16zm-16 16h16v16h-16zm32 0h16v16h-16z" fill="var(--bg)"/></svg></span>
+      <span>GREEN FLAG<span class="brand-sub">SIM RACING, START HERE</span></span>
+    </a>
+    <a class="back-link" href="index.html"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M19 12H5m7 7-7-7 7-7"/></svg> BACK TO SITE</a>
+  </header>
+  <main class="shell">
+    <section class="hero" aria-labelledby="page-title">
+      <div>
+        <p class="eyebrow">02 / ON THE TRACK</p>
+        <h1 id="page-title">Race with <em>confidence.</em></h1>
+        <p class="intro">Good racecraft is being clear and predictable when other cars are around. You can race hard while leaving room, making deliberate moves, and giving yourself time to react.</p>
+        <div class="hero-actions"><a class="primary-link" href="#clean-racing">LEARN THE BASICS <span aria-hidden="true">↓</span></a><a class="secondary-link" href="find-your-rhythm.html">START WITH THE RHYTHM</a></div>
+      </div>
+      <aside class="race-panel" aria-label="A simple racecraft checklist">
+        <div class="panel-top"><strong>THE CLEAN-RACING LOOP</strong><span>SCAN · DECIDE · FOLLOW THROUGH</span></div>
+        <div class="race-step"><span class="step-mark">01</span><div><h2>Scan ahead</h2><p>Look beyond the next corner. Notice nearby cars, braking points, and trouble early.</p></div></div>
+        <div class="race-step"><span class="step-mark">02</span><div><h2>Make one clear move</h2><p>Choose where you’ll go, then avoid sudden swerves or changing direction repeatedly.</p></div></div>
+        <div class="race-step"><span class="step-mark">03</span><div><h2>Leave room</h2><p>If a car is alongside, give it space through the corner and focus on a clean exit.</p></div></div>
+      </aside>
+    </section>
+
+    <section class="guide" id="clean-racing" aria-labelledby="guide-title">
+      <div class="section-head"><h2 id="guide-title">Make the race predictable.</h2><p>Other drivers can react to a move they can read. Smooth, steady choices make close racing easier for everyone.</p></div>
+      <div class="guide-grid">
+        <article class="guide-card"><span class="card-label">01 / THE START</span><h3>Give the first corner room</h3><p>Hold a steady direction off the line. The pack is close and tyres may be cold, so leave extra space and expect to brake earlier than you do alone.</p></article>
+        <article class="guide-card"><span class="card-label">02 / YOUR LINE</span><h3>Be easy to read</h3><p>When defending, pick your position early and keep it. Avoid weaving or moving across another car’s path as they approach the braking zone.</p></article>
+        <article class="guide-card"><span class="card-label">03 / SIDE BY SIDE</span><h3>Share the corner</h3><p>If another car is alongside as you turn, leave enough track for both cars. A slightly slower, clean exit is better than contact.</p></article>
+      </div>
+    </section>
+
+    <section class="pass-section" aria-labelledby="pass-title">
+      <div class="section-head"><h2 id="pass-title">Set up a clean pass.</h2><p>A pass usually starts before the braking zone. If the gap is closing, wait for a better chance instead of forcing it.</p></div>
+      <div class="pass-grid">
+        <article class="pass-step"><span>01 / PREPARE</span><h3>Get close safely</h3><p>Follow at a steady distance and use the previous corners to build a run. Don’t bump the car ahead to create a gap.</p></article>
+        <article class="pass-step"><span>02 / COMMIT</span><h3>Choose your moment</h3><p>Move to the passing side early enough to be seen. If you arrive alongside, both drivers should leave room into the turn.</p></article>
+        <article class="pass-step"><span>03 / COMPLETE</span><h3>Finish the corner</h3><p>Stay in control, give space until clear, then return to the racing line smoothly. Skip the move if there isn’t room to finish it.</p></article>
+      </div>
+    </section>
+
+    <aside class="incident" aria-labelledby="incident-title">
+      <div><p class="eyebrow">WHEN THINGS GO WRONG</p><h2 id="incident-title">Stay calm. Stay clear.</h2></div>
+      <div><p class="incident-copy">If a car spins or slows suddenly, ease off the throttle, brake if needed, and steer around it only when there’s a safe opening. If you go off track, rejoin when the track is clear and avoid cutting across cars still racing.</p><p class="rule-note">Each racing game and league can have its own rules for contact, flags, track limits, and penalties. Check those rules before joining a race.</p></div>
+    </aside>
+
+    <section class="practice" aria-labelledby="practice-title">
+      <div><h2 id="practice-title">A confidence-building session</h2><p>Try a short race against easy AI or in a practice lobby. Focus on clean starts and predictable lines, then review one moment where you had to react. Pick one thing to improve next time.</p><a class="text-arrow" href="find-your-rhythm.html">PRACTISE THE BASICS FIRST <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14m-6-7 7 7-7 7"/></svg></a></div><span class="lap-count">CLEAN FIRST · THEN FASTER</span>
+    </section>
+  </main>
+  <footer class="site-footer shell"><span>Made for the next generation of racers.</span><a href="index.html">BACK TO GREEN FLAG</a><button type="button" id="back-to-top" class="back-top" aria-label="Back to top"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 20V4M5 11l7-7 7 7"/></svg><span>BACK TO TOP</span></button></footer>
+  <script>
+    const backTopButton = document.querySelector('#back-to-top');
+    const pageFooter = document.querySelector('.site-footer');
+    const updateBackToTop = () => {
+      const visible = window.scrollY > 320;
+      const footerTop = pageFooter.getBoundingClientRect().top;
+      const shouldDock = visible && footerTop < window.innerHeight - 80;
+      backTopButton.classList.toggle('is-visible', visible);
+      const isDocked = backTopButton.classList.contains('is-docked');
+      if (shouldDock !== isDocked) {
+        const before = backTopButton.getBoundingClientRect();
+        backTopButton.classList.toggle('is-docked', shouldDock);
+        const after = backTopButton.getBoundingClientRect();
+        const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+        if (visible && !reducedMotion && typeof backTopButton.animate === 'function') {
+          backTopButton.animate([
+            { transform: `translate(${before.left - after.left}px, ${before.top - after.top}px)` },
+            { transform: 'translate(0, 0)' }
+          ], { duration: 360, easing: 'cubic-bezier(.22,.7,.2,1)' });
+        }
+      }
+    };
+    window.addEventListener('scroll', updateBackToTop, { passive: true });
+    window.addEventListener('resize', updateBackToTop);
+    backTopButton.addEventListener('click', () => {
+      const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+      window.scrollTo({ top: 0, behavior: reducedMotion ? 'auto' : 'smooth' });
+    });
+    updateBackToTop();
+  </script>
+</body>
+</html>
