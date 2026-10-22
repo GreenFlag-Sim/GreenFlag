@@ -78,6 +78,13 @@
     .back-top svg { width:15px; height:15px; fill:none; stroke:var(--green); stroke-width:1.8; stroke-linecap:round; stroke-linejoin:round; }
     .back-top:hover { border-color:var(--green); color:var(--green); }
     @media(prefers-reduced-motion:reduce) { html{scroll-behavior:auto}.back-top{transition:none} }
+    .next-guide { display:grid; grid-template-columns:minmax(0,1fr) auto; gap:26px; align-items:center; margin-top:20px; padding:28px 30px; border:1px solid #254330; background:#0b140e; }
+    .next-guide .eyebrow { margin:0 0 11px; }
+    .next-guide h2 { margin:0 0 9px; font-size:clamp(24px,3vw,34px); letter-spacing:-.05em; }
+    .next-guide p:not(.eyebrow) { max-width:650px; margin:0; color:var(--muted); font-size:12px; line-height:1.8; }
+    .next-guide .primary-link { white-space:nowrap; }
+    .all-guides-link { margin:14px 0 0; text-align:right; color:var(--subtle); font:9px var(--mono); letter-spacing:.08em; }
+    .all-guides-link a:hover { color:var(--green); }
     @media(max-width:700px) {
       .shell { width:calc(100% - 32px); }
       .site-header { height:72px; }
@@ -102,6 +109,10 @@
       .site-footer > span { grid-column:1/-1; }
       .site-footer > a { grid-column:1; justify-self:start; }
       .back-top.is-docked { grid-column:2; justify-self:end; }
+      .next-guide { grid-template-columns:1fr; gap:17px; padding:22px; }
+      .next-guide .primary-link { justify-self:start; }
+      .all-guides-link { text-align:left; }
+
     }
   </style>
 </head>
@@ -119,7 +130,7 @@
         <p class="eyebrow">03 / YOUR EQUIPMENT</p>
         <h1 id="page-title">Make your <em>setup yours.</em></h1>
         <p class="intro">A good setup is one that lets you drive comfortably and consistently. You can learn a lot with a controller, and a wheel is an option when you’re ready. Start with what you own, then change one thing at a time.</p>
-        <div class="hero-actions"><a class="primary-link" href="#start-here">START WITH WHAT YOU HAVE <span aria-hidden="true">↓</span></a><a class="secondary-link" href="race-with-confidence.html">RACE WITH CONFIDENCE</a></div>
+        <div class="hero-actions"><a class="primary-link" href="#start-here">START WITH WHAT YOU HAVE <span aria-hidden="true">↓</span></a></div>
       </div>
       <aside class="setup-visual" aria-label="Three foundations for a comfortable sim racing setup">
         <div class="visual-top"><strong>THE GARAGE</strong><span>COMFORT · CONTROL · CONSISTENCY</span></div>
@@ -152,10 +163,8 @@
       <div><p class="eyebrow">YOUR FIRST TEN MINUTES</p><h2 id="quick-title">A simple setup check.</h2><p>Pick a familiar car and track, then practise at a comfortable pace. Aim for settings and posture you can repeat, not the fastest lap straight away.</p></div>
       <ul class="checklist"><li>Place the screen where it’s easy to see and keep your seat stable.</li><li>Check that your steering, throttle, and brake respond smoothly.</li><li>Choose a comfortable force feedback level if you use a wheel.</li><li>Do a few laps, then adjust just one thing if needed.</li></ul>
     </section>
-    <section class="bottom-cta" aria-labelledby="next-title">
-      <div><h2 id="next-title">Make it yours, one step at a time.</h2><p>You do not need to upgrade to start learning. Build confidence with the equipment you have, and make future choices based on what would genuinely help you.</p></div>
-      <div class="hero-actions"><a class="primary-link" href="find-your-rhythm.html">FIND YOUR FIRST RHYTHM <span aria-hidden="true">→</span></a><a class="secondary-link" href="index.html#start">ALL GUIDES</a></div>
-    </section>
+    <section class="next-guide" aria-labelledby="next-guide-title"><div><p class="eyebrow">READY TO MOVE ON?</p><h2 id="next-guide-title">Compare beginner gear.</h2><p>See what different wheel types do, which versions fit your platform, and what to check before spending money.</p></div><a class="primary-link" href="gear-guide.html">NEXT GUIDE <span aria-hidden="true">→</span></a></section>
+    <p class="all-guides-link"><a href="index.html?section=guides">ALL GUIDES <span aria-hidden="true">→</span></a></p>
   </main>
   <footer class="site-footer shell"><span>Made for the next generation of racers.</span><a href="index.html#top">BACK TO GREEN FLAG</a><button type="button" id="back-to-top" class="back-top" aria-label="Back to top"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 20V4M5 11l7-7 7 7"/></svg><span>BACK TO TOP</span></button></footer>
   <script>

@@ -60,6 +60,13 @@
     .back-top svg { width:15px; height:15px; flex:none; fill:none; stroke:var(--green); stroke-width:1.8; stroke-linecap:round; stroke-linejoin:round; }
     .back-top:hover { border-color:var(--green); color:var(--green); }
     @media(prefers-reduced-motion:reduce) { .back-top { transition:none; } }
+    .next-guide { display:grid; grid-template-columns:minmax(0,1fr) auto; gap:26px; align-items:center; margin-top:20px; padding:28px 30px; border:1px solid #254330; background:#0b140e; }
+    .next-guide .eyebrow { margin:0 0 11px; }
+    .next-guide h2 { margin:0 0 9px; font-size:clamp(24px,3vw,34px); letter-spacing:-.05em; }
+    .next-guide p:not(.eyebrow) { max-width:650px; margin:0; color:var(--muted); font-size:12px; line-height:1.8; }
+    .next-guide .primary-link { white-space:nowrap; }
+    .all-guides-link { margin:14px 0 0; text-align:right; color:var(--subtle); font:9px var(--mono); letter-spacing:.08em; }
+    .all-guides-link a:hover { color:var(--green); }
     @media(max-width:700px) {
       .shell { width:calc(100% - 32px); }
       .site-header { height:72px; }
@@ -83,6 +90,10 @@
       .site-footer > span { grid-column:1/-1; grid-row:1; }
       .site-footer > a:not(.back-top) { grid-column:1; grid-row:2; justify-self:start; }
       .back-top.is-docked { grid-column:2; grid-row:2; justify-self:end; }
+      .next-guide { grid-template-columns:1fr; gap:17px; padding:22px; }
+      .next-guide .primary-link { justify-self:start; }
+      .all-guides-link { text-align:left; }
+
     }
     @media(prefers-reduced-motion:reduce) { html { scroll-behavior:auto; } }
   </style>
@@ -121,8 +132,9 @@
         <article class="step"><span class="step-number">03 / BE SMOOTH</span><h3>Make one clean turn</h3><p>A useful starting point is to begin wide, move toward the inside near the middle, then let the car run back out. The best line can change with the corners around it.</p></article>
       </div>
       <aside class="corner-note" aria-labelledby="corner-note-title"><div><p class="eyebrow">READ THE WHOLE SECTION</p><h2 id="corner-note-title">Corners work together.</h2></div><p>The same turn can need a different line depending on what comes just before and after it. A previous corner may affect the side of the track you arrive from. If this turn leads onto a long straight, a later apex can help you get on the power sooner. If another turn follows quickly, you may need to give up a little space here to set up the next one. Look at the sequence, not just one corner at a time.</p></aside>
-      <div class="practice"><div><h2>A simple first practice</h2><p>Drive five laps at a comfortable pace. For the first few, focus on staying on track. Then choose one corner and try to brake at the same marker each lap. If you make a mistake, reset and try again—every lap is useful practice.</p></div><div class="practice-actions"><span class="lap-count">5 CALM LAPS ✳</span><a class="primary-link next-link" href="race-with-confidence.html" aria-label="Next page: Race with confidence">NEXT: RACE WITH CONFIDENCE <span aria-hidden="true">→</span></a></div></div>
+      <div class="practice"><div><h2>A simple first practice</h2><p>Drive five laps at a comfortable pace. For the first few, focus on staying on track. Then choose one corner and try to brake at the same marker each lap. If you make a mistake, reset and try again—every lap is useful practice.</p></div><div class="practice-actions"><span class="lap-count">5 CALM LAPS ✳</span></div></div>
     </section>
+    <section class="next-guide" aria-labelledby="next-guide-title"><div><p class="eyebrow">READY TO MOVE ON?</p><h2 id="next-guide-title">Race with confidence.</h2><p>Take your smoother laps into traffic with clear, predictable moves and more awareness of the cars around you.</p></div><a class="primary-link" href="race-with-confidence.html">NEXT GUIDE <span aria-hidden="true">→</span></a></section>
   </main>
   <footer class="site-footer shell"><span>Made for the next generation of racers.</span><a href="index.html">BACK TO GREEN FLAG</a><button type="button" id="back-to-top" class="back-top" aria-label="Back to top"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 20V4M5 11l7-7 7 7"/></svg><span>BACK TO TOP</span></button></footer>
   <script>
