@@ -24,36 +24,306 @@ main{padding:68px 0 92px}.eyebrow{display:flex;align-items:center;gap:10px;margi
 .footer-brand .brand-logo{width:220px;max-height:70px}
 @media(max-width:680px){.brand-logo{width:172px;max-height:56px}.footer-brand .brand-logo{width:190px;max-height:60px}}
 </style>
-</head>
+<style>
+.gear-hero{grid-template-columns:1.05fr .95fr;gap:50px;align-items:stretch}
+.platform-panel{display:flex;flex-direction:column;justify-content:center;padding:28px;border:1px solid var(--line);background:var(--panel)}
+.platform-panel .eyebrow{margin-bottom:14px}
+.platform-panel h2{margin:0 0 12px;font-size:clamp(24px,3vw,34px);letter-spacing:-.05em}
+.platform-panel>p:last-child{margin:16px 0 0;color:var(--muted);font-size:12px;line-height:1.8}
+.platform-buttons{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:8px}
+.platform-button,.pc-view-button,.brand-filter-button{min-height:46px;border:1px solid var(--line);background:#0b080e;color:var(--muted);font:10px var(--mono);letter-spacing:.06em;cursor:pointer;transition:background .2s,border-color .2s,color .2s,transform .2s}
+.platform-button:hover,.pc-view-button:hover,.brand-filter-button:hover{border-color:#8050a0;color:var(--ink)}
+.platform-button[aria-pressed="true"],.pc-view-button[aria-pressed="true"],.brand-filter-button[aria-pressed="true"]{border-color:var(--purple);background:var(--purple);color:#0c0712;font-weight:800;box-shadow:inset 0 0 0 1px rgba(255,255,255,.12)}
+.platform-button:focus-visible,.pc-view-button:focus-visible,.brand-filter-button:focus-visible,.product-search:focus-visible{outline:2px solid #C77DFF;outline-offset:3px}
+.catalog-section{padding-top:52px}
+.catalog-tools{display:flex;align-items:end;justify-content:space-between;gap:20px;margin:22px 0 16px}
+.pc-view-group{display:flex;flex-wrap:wrap;gap:8px}
+.pc-view-button{padding:0 14px}
+.product-search-wrap{display:grid;gap:7px;min-width:min(300px,100%);color:var(--subtle);font:9px var(--mono);letter-spacing:.08em}
+.product-search{width:100%;height:44px;padding:0 13px;border:1px solid var(--line);background:#0b080e;color:var(--ink);font:12px var(--sans)}
+.product-search::placeholder{color:var(--subtle)}
+.brand-filters{display:flex;flex-wrap:wrap;gap:7px;margin:0 0 17px}
+.brand-filter-button{min-height:35px;padding:0 12px;font-size:9px}
+.catalog-status{margin:0 0 15px;color:var(--muted);font:10px var(--mono);letter-spacing:.04em}
+.product-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px}
+.product-card{display:flex;flex-direction:column;min-height:245px;padding:20px;border:1px solid var(--line);background:linear-gradient(145deg,#14101a,#0d0a10);transition:border-color .2s,transform .2s}
+.product-card:hover{border-color:#704084;transform:translateY(-2px)}
+.product-card.budget-card{border-color:#563364}
+.product-card-head{display:flex;justify-content:space-between;align-items:start;gap:10px;margin-bottom:17px}
+.product-brand,.product-kind,.product-fit-label{font:9px var(--mono);letter-spacing:.08em;text-transform:uppercase}
+.product-brand{color:var(--purple)}
+.product-kind{padding:5px 7px;border:1px solid #44304f;color:#c8a4dc;text-align:right}
+.product-card h3{margin:0 0 10px;font-size:20px;line-height:1.1;letter-spacing:-.04em}
+.product-card p{margin:0;color:var(--muted);font-size:12px;line-height:1.7}
+.product-card .product-fit{margin-top:12px;padding-top:11px;border-top:1px solid rgba(154,128,174,.18);color:#c5bacd;font-size:11px}
+.product-card .product-fit strong{color:var(--ink)}
+.product-link{display:inline-flex;align-items:center;gap:7px;margin-top:auto;padding-top:15px;color:var(--purple);font:9px var(--mono);letter-spacing:.05em}
+.product-link:hover{color:#C77DFF}
+.empty-results{padding:24px;border:1px dashed var(--line);color:var(--muted);font-size:13px}
+.platform-note{margin-top:22px;padding:20px 22px;border:1px solid #4a3556;background:#120c17}
+.platform-note h3{margin:0 0 8px;font-size:16px}
+.platform-note p{margin:0;color:var(--muted);font-size:12px;line-height:1.8}
+.guide-section{padding:58px 0 0}
+.guide-section .section-head{margin-bottom:20px}
+.guide-section .section-head h2{margin:0}
+.explain-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px}
+.explain-card{padding:22px;border:1px solid var(--line);background:var(--panel)}
+.explain-card .step-number{display:block;margin-bottom:13px;color:var(--purple);font:9px var(--mono);letter-spacing:.08em}
+.explain-card h3{margin:0 0 9px;font-size:19px;letter-spacing:-.03em}
+.explain-card p{margin:0;color:var(--muted);font-size:12px;line-height:1.8}
+.explain-card p+p{margin-top:10px}
+.buyer-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px}
+.buyer-tip{display:flex;gap:12px;padding:16px;border:1px solid var(--line);background:var(--panel);color:var(--muted);font-size:12px;line-height:1.7}
+.buyer-tip strong{color:var(--ink)}
+.buyer-tip .tip-num{flex:none;color:var(--purple);font:10px var(--mono)}
+.source-list{margin-top:32px;border-top:1px solid var(--line);border-bottom:1px solid var(--line)}
+.source-list summary{padding:16px 0;color:var(--muted);font:10px var(--mono);letter-spacing:.08em;cursor:pointer}
+.source-list ul{display:flex;flex-wrap:wrap;gap:10px 18px;padding:0 0 18px 18px;margin:0;color:var(--muted);font-size:11px}
+.source-list a{color:var(--purple)}
+.source-list a:hover{color:#C77DFF}
+.update-note{margin-top:14px;color:var(--subtle);font:9px var(--mono);line-height:1.7}
+.closing{margin-top:58px}
+#pc-view-group[hidden],#empty-results[hidden]{display:none}
+@media(max-width:900px){.product-grid{grid-template-columns:repeat(2,minmax(0,1fr))}.explain-grid{grid-template-columns:1fr 1fr}}
+@media(max-width:700px){.gear-hero{grid-template-columns:1fr;gap:20px}.platform-panel{padding:22px}.catalog-tools{align-items:stretch;flex-direction:column}.product-search-wrap{min-width:0}.product-grid{grid-template-columns:1fr}.product-card{min-height:0}.explain-grid,.buyer-grid{grid-template-columns:1fr}.guide-section{padding-top:44px}.catalog-section{padding-top:40px}}
+@media(max-width:380px){.platform-buttons{grid-template-columns:1fr}.platform-button{min-height:42px}}
+@media(prefers-reduced-motion:reduce){.platform-button,.pc-view-button,.brand-filter-button,.product-card{transition:none}}
+</style></head>
 <body>
 <header class="site-header shell">
 <a class="brand" href="index.html?section=guides" aria-label="PurpleLap, all guides"><img class="brand-logo" src="purplelap-logo.png" alt="PurpleLap — Learn to Sim Race"></a>
 <a class="back-link" href="index.html?section=guides"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M19 12H5m7 7-7-7 7-7"/></svg> ALL GUIDES</a>
 </header>
 <main class="shell">
-<section class="hero" aria-labelledby="page-title">
-<div><p class="eyebrow">04 / YOUR EQUIPMENT</p><h1 id="page-title">Choose gear that <em>fits you.</em></h1><p class="intro">A wheel can add force feedback and a more direct feel, but you do not need one to learn. If you are thinking about buying, start with your console or PC, the games you play, and the space you have. There is no single “best” wheel for everyone.</p><div class="hero-actions"><a class="primary-link" href="#picks">COMPARE BEGINNER PICKS <span aria-hidden="true">↓</span></a><a class="secondary-link" href="#before-buying">CHECK BEFORE YOU BUY</a></div></div>
-<aside class="hero-note"><span class="note-label">FIRST QUESTION · COMPATIBILITY</span><h2>What do you play on?</h2><p>Console wheels are not interchangeable across Xbox and PlayStation. PC gives you more choices, but check the game’s supported-device list and the exact bundle.</p><div class="platform-row" aria-label="Platform options"><span>XBOX</span><span>PLAYSTATION</span><span>PC</span></div></aside>
+<section class="hero gear-hero" aria-labelledby="page-title">
+  <div>
+    <p class="eyebrow">04 / YOUR EQUIPMENT</p>
+    <h1 id="page-title">Choose gear that <em>fits you.</em></h1>
+    <p class="intro">A wheel can make sim racing feel more involving, but buying the wrong version is an expensive mistake. Start with your platform, then compare the wheel type, bundle, space, and total cost that suit you. You can learn the fundamentals with a controller first.</p>
+    <div class="hero-actions"><a class="primary-link" href="#compatible-models">FIND COMPATIBLE MODELS <span aria-hidden="true">↓</span></a><a class="secondary-link" href="#buying-checklist">CHECK BEFORE YOU BUY</a></div>
+  </div>
+  <aside class="platform-panel" id="platform-picker" aria-labelledby="platform-title">
+    <p class="eyebrow">START WITH COMPATIBILITY</p>
+    <h2 id="platform-title">What do you play on?</h2>
+    <div class="platform-buttons" role="group" aria-label="Filter wheel models by platform">
+      <button class="platform-button" type="button" data-platform="xbox" aria-pressed="true">XBOX</button>
+      <button class="platform-button" type="button" data-platform="playstation" aria-pressed="false">PLAYSTATION</button>
+      <button class="platform-button" type="button" data-platform="pc" aria-pressed="false">PC</button>
+    </div>
+    <p>Choose a button to see the models and exact variants we’ve matched to that platform. Xbox and PlayStation versions often look alike but are not interchangeable.</p>
+  </aside>
 </section>
-<section class="section" id="picks" aria-labelledby="picks-title">
-<div class="section-head"><h2 id="picks-title">Three sensible places to start.</h2><p>These are examples across different budgets and wheel technologies, not a universal ranking. Compare the exact platform version and full bundle price where you live.</p></div>
-<div class="pick-grid">
-<article class="pick-card featured"><span class="pick-label">XBOX · DIRECT DRIVE</span><h3>MOZA R3 Xbox bundle</h3><p>A compact direct-drive bundle with a 3.9 Nm motor. A strong starting point if you use Xbox and specifically want direct drive.</p><p class="fit"><strong>Fit:</strong> Xbox-licensed R3 bundle works with Xbox and PC. The separate PC bundle is not the Xbox version.</p><a class="product-link" href="#moza-r3">See details <span aria-hidden="true">↓</span></a></article>
-<article class="pick-card"><span class="pick-label">XBOX OR PLAYSTATION · CONVENTIONAL FFB</span><h3>Logitech G920 / G29</h3><p>A commonly available force-feedback starter with a dual-motor, gear-driven design. It is not direct drive and can make sense when you want a simpler wheel.</p><p class="fit"><strong>Fit:</strong> G920 for Xbox/PC; G29 for PlayStation/PC. Check the label before buying.</p><a class="product-link" href="#force-feedback">See details <span aria-hidden="true">↓</span></a></article>
-<article class="pick-card"><span class="pick-label">XBOX OR PLAYSTATION · HYBRID DRIVE</span><h3>Thrustmaster T128</h3><p>A force-feedback option using Thrustmaster’s hybrid-drive system. It gives you feedback without moving to a direct-drive bundle.</p><p class="fit"><strong>Fit:</strong> Separate Xbox/PC and PlayStation/PC versions are sold. Pick the matching console version.</p><a class="product-link" href="#thrustmaster">See details <span aria-hidden="true">↓</span></a></article>
-</div>
-<aside class="notice"><span class="notice-mark" aria-hidden="true">i</span><div><h3>“Best entry level” depends on your platform and budget.</h3><p>The R3 is our example pick for an Xbox player who wants a first direct-drive setup. If you mainly want to try force feedback with a simpler wheel, a G920/G29 or T128 may suit better. Check current Canadian prices and bundle contents before deciding—prices and availability change.</p></div></aside>
+
+<section class="section catalog-section" id="compatible-models" aria-labelledby="catalog-title">
+  <div class="section-head">
+    <div><p class="eyebrow">PLATFORM-MATCHED SHORTLIST</p><h2 id="catalog-title">Wheels that work with your platform.</h2></div>
+    <p id="catalog-intro">The Xbox list includes current products and common older models from the brands covered below. Each listing calls out the console-specific part you need.</p>
+  </div>
+  <div class="catalog-tools">
+    <div id="pc-view-group" class="pc-view-group" role="group" aria-label="PC wheel lists" hidden>
+      <button class="pc-view-button" type="button" data-pc-view="all" aria-pressed="true">15 PC PICKS</button>
+      <button class="pc-view-button" type="button" data-pc-view="budget" aria-pressed="false">5 BUDGET PICKS</button>
+    </div>
+    <label class="product-search-wrap">SEARCH THESE RESULTS
+      <input class="product-search" id="product-search" type="search" placeholder="Try MOZA, direct drive, G29…" autocomplete="off">
+    </label>
+  </div>
+  <div id="brand-filters" class="brand-filters" role="group" aria-label="Filter compatible models by brand"></div>
+  <p class="catalog-status" id="catalog-status" aria-live="polite"></p>
+  <div class="product-grid" id="product-grid" aria-live="polite"></div>
+  <p class="empty-results" id="empty-results" hidden>No compatible models match that search. Try a different model or choose “All brands.”</p>
+  <aside class="platform-note" aria-labelledby="platform-note-title">
+    <h3 id="platform-note-title">A compatible wheel still needs a compatible game.</h3>
+    <p>Console support depends on the exact wheel, base, licensed component, and game. A Windows PC connection does not guarantee every racing title supports every button or force-feedback feature. Check the game’s wheel list and the manufacturer’s page for the exact model before buying.</p>
+  </aside>
+  <p class="update-note">These are verified examples from Logitech, Thrustmaster, MOZA, Fanatec, and HORI. Older products may be discontinued or used only. Regional versions and bundles can differ.</p>
 </section>
-<section class="model-section" aria-labelledby="model-title"><div class="section-head"><h2 id="model-title">The model details.</h2><p>These official product pages are here so you can check current compatibility and bundle details.</p></div>
-<article class="model-card" id="moza-r3"><div class="model-title"><span class="pick-label">DIRECT DRIVE · 3.9 NM</span><h3>MOZA R3 Xbox bundle</h3><p>Xbox Series X|S / Xbox One / PC<br>Use the Xbox-licensed bundle.</p></div><div class="model-copy"><p>Direct drive means the wheel is attached directly to the motor, giving detailed force feedback. The R3 Xbox bundle is a good entry-level DD option if you specifically want direct drive and its cost, clamp, and pedals fit your situation.</p><p>MOZA also sells an R3 PC bundle. Do not assume the PC-only bundle works on Xbox; check MOZA’s platform notes and your game before ordering.</p><div class="model-links"><a class="product-link" href="https://us.mozaracing.com/products/r3-racing-bundle-xbox" target="_blank" rel="noopener noreferrer">MOZA R3 Xbox product page ↗</a><a class="product-link" href="https://support.mozaracing.com/en/support/solutions/articles/70000627811-wheel-base-faqs" target="_blank" rel="noopener noreferrer">MOZA wheel-base FAQs ↗</a></div></div></article>
-<article class="model-card" id="force-feedback"><div class="model-title"><span class="pick-label">GEAR-DRIVEN FORCE FEEDBACK · 2.3 NM</span><h3>Logitech G920 / G29</h3><p>G920: Xbox / PC<br>G29: PlayStation / PC</p></div><div class="model-copy"><p>These use dual motors and a gear-driven mechanism to produce force feedback. They are not direct drive, but they are well-known starter wheels and can be easier to find second-hand. G29 and G920 are platform-specific versions, so check which one you are looking at.</p><p>Also check that your particular racing game supports the wheel and platform.</p><div class="model-links"><a class="product-link" href="https://www.logitechg.com/en-ca/products/driving/driving-force-racing-wheel.html" target="_blank" rel="noopener noreferrer">Logitech G29 / G920 product page ↗</a></div></div></article>
-<article class="model-card" id="thrustmaster"><div class="model-title"><span class="pick-label">HYBRID-DRIVE FORCE FEEDBACK</span><h3>Thrustmaster T128</h3><p>Separate Xbox / PC<br>and PlayStation / PC versions</p></div><div class="model-copy"><p>The T128 is a force-feedback wheel that uses a hybrid-drive system. It can be a lower-cost way to get feedback from the car without buying a direct-drive base. Choose the version licensed for your console; both versions also support PC.</p><p>Use the compatibility checker for your exact game and platform, since support can differ by title.</p><div class="model-links"><a class="product-link" href="https://www.thrustmaster.com/en-us/products/t128-xbox-pc/" target="_blank" rel="noopener noreferrer">T128 Xbox / PC page ↗</a><a class="product-link" href="https://www.thrustmaster.com/en-us/products/t128/" target="_blank" rel="noopener noreferrer">T128 PlayStation / PC page ↗</a></div></div></article>
+
+<section class="guide-section" aria-labelledby="drive-types-title">
+  <div class="section-head"><div><p class="eyebrow">THE FEEL OF THE WHEEL</p><h2 id="drive-types-title">Three ways a wheel can feel.</h2></div><p>Force feedback sends steering forces from the game through the wheel. The mechanism changes the feel, noise, cost, and mounting needs.</p></div>
+  <div class="explain-grid">
+    <article class="explain-card"><span class="step-number">01 / GEAR OR SPRING</span><h3>Simple first step</h3><p>Some low-cost wheels use springs or bungee resistance rather than true force feedback. They let you practise steering and pedals, but they will not reproduce the same self-aligning forces as an FFB wheel.</p><p>Gear-driven FFB wheels such as the Logitech G29/G920 add motor feedback at a lower price than most direct-drive sets. The gears can be audible and the feeling is less smooth than a belt or direct-drive base.</p></article>
+    <article class="explain-card"><span class="step-number">02 / HYBRID OR BELT</span><h3>Smoother force feedback</h3><p>Hybrid and belt-driven systems use a motor and transmission to send steering forces. They can feel smoother or quieter than a gear-driven design, while remaining a familiar all-in-one wheel-and-pedals option.</p><p>Read the exact product description: brands use different drive designs, and the term “hybrid” does not mean every model feels the same.</p></article>
+    <article class="explain-card"><span class="step-number">03 / DIRECT DRIVE</span><h3>Motor connected to the wheel</h3><p>Direct drive attaches the wheel to the motor shaft, so the system can deliver detailed force feedback. It usually costs more, and stronger bases need a sturdy desk clamp or rig that can safely handle the force.</p><p>A higher Nm number means stronger potential torque, not automatic lap-time gains. Use adjustable settings and a secure mount.</p></article>
+  </div>
 </section>
-<section class="section" id="before-buying" aria-labelledby="buy-title"><div class="section-head"><h2 id="buy-title">Before you spend money.</h2><p>Use this short check on any wheel you are considering, new or used.</p></div><div class="check-grid">
-<div class="check">Confirm the exact Xbox, PlayStation, or PC version and whether your game supports it.</div><div class="check">Check what is included: base, steering wheel, pedals, power supply, cables, and clamp or stand.</div><div class="check">Measure desk thickness and space. Make sure the pedals will stay in place.</div><div class="check">Compare the full cost in Canadian dollars, including shipping, taxes, a stand, and accessories.</div><div class="check">If buying used, ask to test steering and pedals and check that the correct power supply is included.</div><div class="check">Check the seller’s return policy and warranty before ordering.</div>
-</div></section>
-<section class="closing" aria-labelledby="closing-title"><h2 id="closing-title">You can learn before you buy.</h2><p>Try a few sessions with your controller first. Notice what you like and what feels limiting, then decide whether a wheel would make sim racing more fun for you. No brand or piece of gear is required to start.</p></section>
+
+<section class="guide-section" id="buying-checklist" aria-labelledby="buy-title">
+  <div class="section-head"><div><p class="eyebrow">BEFORE YOU SPEND</p><h2 id="buy-title">A buyer’s checklist.</h2></div><p>Compare the whole setup, not just the wheelbase headline. These checks help avoid compatibility surprises and extra costs.</p></div>
+  <div class="buyer-grid">
+    <div class="buyer-tip"><span class="tip-num">01</span><span><strong>Match the license.</strong> Check the box and model suffix: G29 and G920 are different console versions; Thrustmaster T128/T248 variants also differ. Do not rely on the product photo.</span></div>
+    <div class="buyer-tip"><span class="tip-num">02</span><span><strong>Check the game.</strong> Confirm that your exact racing game supports that wheel on your platform. Console support, button mapping, and force feedback can vary by title.</span></div>
+    <div class="buyer-tip"><span class="tip-num">03</span><span><strong>Price the complete bundle.</strong> Check whether pedals, power supply, clamp, shifter, and the required licensed wheel are included or sold separately.</span></div>
+    <div class="buyer-tip"><span class="tip-num">04</span><span><strong>Measure your space.</strong> Check desk thickness, clamp opening, chair position, and whether pedals will slide. High-torque direct drive bases need a rigid mount.</span></div>
+    <div class="buyer-tip"><span class="tip-num">05</span><span><strong>Plan the total cost.</strong> Compare Canadian prices after shipping and tax. A stand, stronger pedals, or a console-specific bundle may change the real total.</span></div>
+    <div class="buyer-tip"><span class="tip-num">06</span><span><strong>If buying used, test it.</strong> Ask to check the wheel’s calibration, buttons, pedals, cables, power adapter, return options, and console license before paying.</span></div>
+  </div>
+</section>
+
+<section class="guide-section" aria-labelledby="console-rules-title">
+  <div class="section-head"><div><p class="eyebrow">THE DETAILS THAT TRIP PEOPLE UP</p><h2 id="console-rules-title">How the brand rules work.</h2></div><p>These notes explain why the filter separates products that can look almost identical.</p></div>
+  <div class="explain-grid">
+    <article class="explain-card"><span class="step-number">LOGITECH</span><h3>Pick the console version</h3><p>G920 is the Xbox/PC model; G29 is PlayStation/PC. G923 and the PRO Racing Wheel are also sold in separate Xbox and PlayStation versions. Their PC variants are listed separately in the PC view.</p></article>
+    <article class="explain-card"><span class="step-number">THRUSTMASTER</span><h3>Look for the suffix</h3><p>T128 and T248 are sold in separate Xbox and PlayStation versions. Other bases such as TX and TS-XW are Xbox/PC; T300 and T-GT models are PlayStation/PC. The official compatibility table below lists the product families.</p></article>
+    <article class="explain-card"><span class="step-number">MOZA + FANATEC</span><h3>Licensed hardware matters</h3><p>MOZA’s R3 Xbox & PC bundle is the Xbox-licensed version; the PC-only R3 bundle is not an Xbox wheel. MOZA’s R12 needs the ESX wheel for Xbox and MOZA does not currently support PlayStation. Fanatec Xbox use needs an Xbox-licensed wheel; PlayStation use needs a PlayStation-licensed base.</p></article>
+  </div>
+</section>
+
+<details class="source-list">
+  <summary>OFFICIAL COMPATIBILITY AND PRODUCT PAGES</summary>
+  <ul>
+    <li><a href="https://www.logitechg.com/en-us/products/driving/driving-force-racing-wheel.html" target="_blank" rel="noopener noreferrer">Logitech G29 / G920 ↗</a></li>
+    <li><a href="https://www.logitechg.com/en-us/shop/p/g923-trueforce-sim-racing-wheel.941-000156" target="_blank" rel="noopener noreferrer">Logitech G923 ↗</a></li>
+    <li><a href="https://www.logitechg.com/en-us/products/driving/pro-racing-wheel.html" target="_blank" rel="noopener noreferrer">Logitech PRO Racing Wheel ↗</a></li>
+    <li><a href="https://support.thrustmaster.com/en/kb/1801-en/" target="_blank" rel="noopener noreferrer">Thrustmaster platform compatibility table ↗</a></li>
+    <li><a href="https://us.mozaracing.com/products/r3-racing-bundle-xbox" target="_blank" rel="noopener noreferrer">MOZA R3 bundle options ↗</a></li>
+    <li><a href="https://support.mozaracing.com/en/support/solutions/articles/70000668789-moza-r12-wheel-base-support" target="_blank" rel="noopener noreferrer">MOZA R12 support and compatibility ↗</a></li>
+    <li><a href="https://www.fanatec.com/us/en/s/platform-compatibility" target="_blank" rel="noopener noreferrer">Fanatec platform compatibility ↗</a></li>
+    <li><a href="https://www.fanatec.com/us/en/explorer/products/racing-wheels-wheel-bases/understanding-fanatec-xbox-compatibility/" target="_blank" rel="noopener noreferrer">Fanatec Xbox compatibility explained ↗</a></li>
+    <li><a href="https://stores.horiusa.com/racing-wheel-apex-for-playstation-5-playstation-4-and-windows-11-10/" target="_blank" rel="noopener noreferrer">HORI Racing Wheel APEX ↗</a></li>
+    <li><a href="https://hori.jp/products/xsx/rw_overdrive/" target="_blank" rel="noopener noreferrer">HORI Racing Wheel Overdrive ↗</a></li>
+  </ul>
+</details>
+<p class="update-note">Compatibility checked October 2026. Product availability, regional SKUs, and prices change; verify the exact model and your game’s compatibility page before checkout.</p>
+
+<section class="closing" aria-labelledby="closing-title"><h2 id="closing-title">You can learn before you buy.</h2><p>Try a few sessions with a controller first. Notice what feels limiting, then decide if a wheel would make sim racing more fun. A particular brand or price level is not required to begin.</p></section>
 </main>
+<script>
+const MODEL_DATA = {
+"g920":{brand:"Logitech",name:"G920 Driving Force",kind:"Gear-driven force feedback · 2.3 Nm",description:"A familiar all-in-one wheel and pedal set with dual-motor force feedback. A sensible first wheel if you want straightforward controls and a large used-market footprint.",fit:"Xbox One / Series X|S and Windows PC. This is not the PlayStation G29.",url:"https://www.logitechg.com/en-us/products/driving/driving-force-racing-wheel.html",link:"Official G920 details ↗"},
+"g29":{brand:"Logitech",name:"G29 Driving Force",kind:"Gear-driven force feedback · 2.3 Nm",description:"The PlayStation counterpart to the G920, with force feedback, paddle shifters, and three pedals in the usual bundle.",fit:"PlayStation 5 / 4 and Windows PC. This is not the Xbox G920.",url:"https://www.logitechg.com/en-us/products/driving/driving-force-racing-wheel.html",link:"Official G29 details ↗"},
+"g923-x":{brand:"Logitech",name:"G923 — Xbox version",kind:"Gear-driven force feedback · 2.3 Nm",description:"A gear-driven wheel with Logitech TRUEFORCE support in compatible games. Buy the Xbox-labeled version for Xbox.",fit:"Xbox One / Series X|S and Windows PC. A separate PlayStation version exists.",url:"https://www.logitechg.com/en-us/shop/p/g923-trueforce-sim-racing-wheel.941-000156",link:"Official G923 details ↗"},
+"g923-ps":{brand:"Logitech",name:"G923 — PlayStation version",kind:"Gear-driven force feedback · 2.3 Nm",description:"The PlayStation-labeled G923 adds the same basic force-feedback format with TRUEFORCE in compatible games.",fit:"PlayStation 5 / 4 and Windows PC. A separate Xbox version exists.",url:"https://www.logitechg.com/en-us/shop/p/g923-trueforce-sim-racing-wheel.941-000156",link:"Official G923 details ↗"},
+"pro-x":{brand:"Logitech",name:"PRO Racing Wheel — Xbox/PC",kind:"Direct drive · 11 Nm",description:"A high-torque direct-drive system for someone with a bigger budget and a sturdy mount. The Xbox model is a distinct licensed version.",fit:"Xbox and Windows PC. Do not buy the PlayStation or PC-only SKU for Xbox.",url:"https://www.logitechg.com/en-us/products/driving/pro-racing-wheel.html",link:"Official PRO wheel details ↗"},
+"pro-ps":{brand:"Logitech",name:"PRO Racing Wheel — PlayStation/PC",kind:"Direct drive · 11 Nm",description:"A high-torque direct-drive system with a dedicated PlayStation-licensed version. This is a premium option, not a starter purchase for most people.",fit:"PlayStation 5 / 4 and Windows PC.",url:"https://www.logitechg.com/en-us/products/driving/pro-racing-wheel.html",link:"Official PRO wheel details ↗"},
+"t128-x":{brand:"Thrustmaster",name:"T128 — Xbox/PC version",kind:"Hybrid-drive force feedback",description:"An entry force-feedback wheel with a fixed rim and pedals. It is a lower-cost way into force feedback than a direct-drive bundle.",fit:"Xbox One / Series X|S and Windows PC. Choose the Xbox-labeled version.",url:"https://support.thrustmaster.com/en/kb/1801-en/",link:"Official platform compatibility ↗"},
+"t128-ps":{brand:"Thrustmaster",name:"T128 — PlayStation/PC version",kind:"Hybrid-drive force feedback",description:"The PlayStation version of the T128 provides an entry into force feedback without a separate wheelbase and rim.",fit:"PlayStation 5 / 4 and Windows PC. Choose the PlayStation-labeled version.",url:"https://support.thrustmaster.com/en/kb/1801-en/",link:"Official platform compatibility ↗"},
+"t248-x":{brand:"Thrustmaster",name:"T248 — Xbox/PC version",kind:"Hybrid-drive force feedback",description:"A feature-rich fixed-wheel option with a display and adjustable feedback settings. The Xbox SKU is not the PlayStation SKU.",fit:"Xbox One / Series X|S and Windows PC.",url:"https://support.thrustmaster.com/en/kb/1801-en/",link:"Official platform compatibility ↗"},
+"t248-ps":{brand:"Thrustmaster",name:"T248 — PlayStation/PC version",kind:"Hybrid-drive force feedback",description:"A PlayStation-licensed T248 with a display and adjustable force-feedback settings.",fit:"PlayStation 5 / 4 and Windows PC.",url:"https://support.thrustmaster.com/en/kb/1801-en/",link:"Official platform compatibility ↗"},
+"tmx":{brand:"Thrustmaster",name:"TMX / TMX Pro",kind:"Older Xbox force-feedback wheel",description:"An older fixed-wheel force-feedback line that can be worth comparing second-hand. The Pro bundle generally adds a pedal upgrade; inspect the exact listing.",fit:"Xbox One / Series X|S and Windows PC. Used stock and bundle contents vary.",url:"https://support.thrustmaster.com/en/kb/1801-en/",link:"Official platform compatibility ↗"},
+"t150":{brand:"Thrustmaster",name:"T150 / T150 Pro",kind:"Older PlayStation force-feedback wheel",description:"A previous-generation fixed-wheel force-feedback model that can appear at lower used prices. Check its condition and the included pedal set.",fit:"PlayStation 5 / 4 and Windows PC. Confirm game support for your specific console and title.",url:"https://support.thrustmaster.com/en/kb/1801-en/",link:"Official platform compatibility ↗"},
+"tx":{brand:"Thrustmaster",name:"TX Racing Wheel",kind:"Belt-driven force feedback",description:"A detachable-rim Xbox/PC wheelbase family; leather and Ferrari bundles differ in the included wheel and pedals.",fit:"Xbox One / Series X|S and Windows PC. Use the Xbox-compatible version.",url:"https://support.thrustmaster.com/en/kb/1801-en/",link:"Official platform compatibility ↗"},
+"tsxw":{brand:"Thrustmaster",name:"TS-XW Racer",kind:"Belt-driven force feedback",description:"A stronger detachable-rim Xbox/PC base, usually sold as a bundle with a wheel and pedals. Check the full bundle and mounting requirements.",fit:"Xbox One / Series X|S and Windows PC.",url:"https://support.thrustmaster.com/en/kb/1801-en/",link:"Official platform compatibility ↗"},
+"t300":{brand:"Thrustmaster",name:"T300 RS / T300 RS GT",kind:"Belt-driven force feedback",description:"A detachable-rim PlayStation/PC base family with a smoother belt-driven feel than entry gear-driven wheels. Bundle contents vary by edition.",fit:"PlayStation 5 / 4 and Windows PC. Check the game’s support list.",url:"https://support.thrustmaster.com/en/kb/1801-en/",link:"Official platform compatibility ↗"},
+"t500":{brand:"Thrustmaster",name:"T500 RS — older model",kind:"Belt-driven force feedback · legacy",description:"An older detachable-rim force-feedback wheel. Thrustmaster lists many PS4 racing titles, but support depends on each game; its PS button and console-menu support are limited. Check the exact game before buying used.",fit:"Windows PC, PS3, and selected PS4 games. Do not assume native PS5 support.",url:"https://support.thrustmaster.com/en/t500rs/",link:"Official T500 RS support ↗"},
+"tgt":{brand:"Thrustmaster",name:"T-GT / T-GT II",kind:"Belt-driven force feedback",description:"A premium PlayStation/PC wheelbase family. It is an older, higher-priced option, so compare condition, included parts, and support before buying used.",fit:"PlayStation 5 / 4 and Windows PC.",url:"https://support.thrustmaster.com/en/kb/1801-en/",link:"Official platform compatibility ↗"},
+"t248r":{brand:"Thrustmaster",name:"T248R",kind:"Hybrid-drive force feedback",description:"A newer T248-family variant listed by Thrustmaster in its PlayStation/PC compatibility table. Check the precise regional version on the product box.",fit:"PlayStation 5 / 4 and Windows PC according to Thrustmaster’s compatibility table.",url:"https://support.thrustmaster.com/en/kb/1801-en/",link:"Official platform compatibility ↗"},
+"t598-x":{brand:"Thrustmaster",name:"T598 — Xbox/PC version",kind:"Direct drive",description:"A direct-drive wheel bundle available in a console-specific Xbox/PC version. It needs a secure mount and the Xbox SKU.",fit:"Xbox One / Series X|S and Windows PC.",url:"https://support.thrustmaster.com/en/kb/1801-en/",link:"Official platform compatibility ↗"},
+"t598-ps":{brand:"Thrustmaster",name:"T598 — PlayStation/PC version",kind:"Direct drive",description:"A direct-drive wheel bundle available in a console-specific PlayStation/PC version. It needs a secure mount and the PlayStation SKU.",fit:"PlayStation 5 / 4 and Windows PC.",url:"https://support.thrustmaster.com/en/kb/1801-en/",link:"Official platform compatibility ↗"},
+"t818":{brand:"Thrustmaster",name:"T818",kind:"Direct drive · PC only",description:"A PC-focused direct-drive wheelbase. This is a base, so budget for the compatible steering wheel, pedals, power, and a rigid mount if they are not in the bundle.",fit:"Windows PC. Thrustmaster lists it as PC-only, not a console base.",url:"https://support.thrustmaster.com/en/kb/1801-en/",link:"Official platform compatibility ↗"},
+"t98-x":{brand:"Thrustmaster",name:"T98 Ferrari 296 GTS — Xbox/PC",kind:"Spring resistance · no true FFB",description:"A very simple entry wheel for steering practice. It does not offer motor-driven force feedback, so it is a budget alternative rather than an FFB equivalent.",fit:"Xbox One / Series X|S and Windows PC; the Xbox model is the Ferrari 296 GTS edition.",url:"https://support.thrustmaster.com/en/kb/1801-en/",link:"Official platform compatibility ↗"},
+"t98-ps":{brand:"Thrustmaster",name:"T98 Ferrari 296 GTB — PlayStation/PC",kind:"Spring resistance · no true FFB",description:"A basic spring-resistance wheel for steering practice at a lower entry level. It is not motor-driven force feedback.",fit:"PlayStation 5 / 4 and Windows PC; choose the Ferrari 296 GTB version.",url:"https://support.thrustmaster.com/en/kb/1801-en/",link:"Official platform compatibility ↗"},
+"t80":{brand:"Thrustmaster",name:"T80 / T80 Ferrari 488 GTB",kind:"Bungee resistance · no true FFB",description:"An older, simple PlayStation wheel with bungee resistance. It can be cheap used, but it does not provide motor-driven force feedback.",fit:"PlayStation 5 / 4 and Windows PC for supported titles. Check the exact T80 model.",url:"https://support.thrustmaster.com/en/kb/1801-en/",link:"Official platform compatibility ↗"},
+"ferrari458":{brand:"Thrustmaster",name:"Ferrari 458 Spider Racing Wheel",kind:"Spring resistance · Xbox only",description:"An older basic Xbox wheel with spring resistance rather than motor-driven force feedback. Verify supported games and condition before considering a used one.",fit:"Xbox One / Series X|S. Thrustmaster does not list this model for PC or PlayStation.",url:"https://support.thrustmaster.com/en/kb/1801-en/",link:"Official platform compatibility ↗"},
+"moza-r3-x":{brand:"MOZA",name:"R3 Racing Bundle — Xbox & PC",kind:"Direct drive · 3.9 Nm",description:"MOZA’s Xbox-licensed entry direct-drive bundle includes the base, ESX Xbox wheel, SR-P Lite pedals, and table clamp.",fit:"Xbox One / Series X|S and Windows PC. Choose the Xbox & PC bundle; the separate PC-only R3 does not work on Xbox.",url:"https://us.mozaracing.com/products/r3-racing-bundle-xbox",link:"Official R3 Xbox bundle ↗"},
+"moza-r3-pc":{brand:"MOZA",name:"R3 Racing Bundle — PC edition",kind:"Direct drive · 3.9 Nm",description:"An entry direct-drive bundle with a table clamp, wheel, and pedals. It is a PC choice at the lower end of MOZA’s direct-drive range.",fit:"Windows PC only for this PC edition. Do not select it for Xbox.",url:"https://us.mozaracing.com/products/r3-racing-bundle-xbox",link:"Check R3 bundle versions ↗"},
+"moza-r5":{brand:"MOZA",name:"R5 Racing Bundle",kind:"Direct drive · 5.5 Nm",description:"A compact PC bundle that includes a 5.5 Nm base, wheel, pedals, and desk clamp. A step up from a gear-driven starter, with more force and detail.",fit:"Windows PC. MOZA lists the R5 as PC-only; it is not an Xbox or PlayStation wheel.",url:"https://us.mozaracing.com/pages/r5-racing-bundle",link:"Official R5 bundle ↗"},
+"moza-r9":{brand:"MOZA",name:"R9 V3 wheel base",kind:"Direct drive · 9 Nm",description:"A 9 Nm PC wheelbase for someone ready to build around a separate base, steering wheel, pedals, and rigid mount.",fit:"Windows PC. Include compatible MOZA components and check the bundle details.",url:"https://us.mozaracing.com/collections/wheel-bases",link:"MOZA wheel-base range ↗"},
+"moza-r12-x":{brand:"MOZA",name:"R12 V1/V2 + ESX wheel",kind:"Direct drive · 12 Nm",description:"MOZA’s support page lists Xbox use for the R12 V1/V2 when paired with the Xbox-licensed ESX steering wheel. The base alone is not enough.",fit:"Xbox One / Series X|S and Windows PC with the ESX wheel; not PlayStation.",url:"https://support.mozaracing.com/en/support/solutions/articles/70000668789-moza-r12-wheel-base-support",link:"Official R12 compatibility ↗"},
+"moza-r12":{brand:"MOZA",name:"R12 V2 wheel base",kind:"Direct drive · 12 Nm",description:"A higher-torque PC direct-drive base for a sim rig and compatible MOZA wheel, pedals, and accessories. It is not an entry bundle.",fit:"Windows PC. MOZA’s R12 Xbox route requires the ESX licensed wheel; no PlayStation support.",url:"https://support.mozaracing.com/en/support/solutions/articles/70000668789-moza-r12-wheel-base-support",link:"Official R12 support ↗"},
+"fanatec-csl":{brand:"Fanatec",name:"CSL DD — 5 Nm or 8 Nm",kind:"Direct drive · 5/8 Nm",description:"Fanatec’s direct-drive entry base. Compare the 5 Nm and 8 Nm bundle, included wheel, pedals, and table clamp before deciding.",fit:"Windows PC; Xbox when paired with an Xbox-licensed steering wheel. Not PlayStation-compatible as a base.",url:"https://www.fanatec.com/us/en/c/wheel-bases",link:"Fanatec wheel-base range ↗"},
+"fanatec-gtdd":{brand:"Fanatec",name:"Gran Turismo DD Pro",kind:"Direct drive · 5/8 Nm options",description:"A PlayStation-licensed direct-drive base, also compatible with PC. The exact bundle and power supply change its torque rating.",fit:"PlayStation 5 / 4 and Windows PC. Xbox needs an Xbox-licensed wheel attached.",url:"https://www.fanatec.com/us/en/p/wheel-bases/crd-9020006-us/gran-turismo-dd-pro-wheel-base-qr2-us",link:"Official GT DD Pro ↗"},
+"fanatec-csl-elite":{brand:"Fanatec",name:"CSL Elite Wheel Base + — PS4 version",kind:"Direct drive · older model",description:"A discontinued PlayStation-licensed direct-drive base that may appear used. The official manual notes that PS4 game compatibility can vary; inspect the exact bundle and do not assume every PS5 title supports it.",fit:"Windows PC and PlayStation 4; PlayStation 5 use depends on supported PS4 games and the exact wheel setup.",url:"https://www.fanatec.com/us/en/explorer/products/racing-wheels-wheel-bases/csl-elite-wheel-base/",link:"Official CSL Elite manual ↗"},
+"fanatec-csdd":{brand:"Fanatec",name:"ClubSport DD",kind:"Direct drive · 15 Nm",description:"A stronger direct-drive base for a sturdy rig. The wheelbase is sold separately from many wheels and accessories.",fit:"Windows PC; Xbox when paired with an Xbox-licensed steering wheel. This is not the PlayStation-licensed DD+.",url:"https://www.fanatec.com/us/en/c/wheel-bases",link:"Fanatec wheel-base range ↗"},
+"fanatec-csddplus":{brand:"Fanatec",name:"ClubSport DD+",kind:"Direct drive · 18 Nm",description:"A high-torque direct-drive base that is one of Fanatec’s PlayStation-licensed options. Plan for a rigid cockpit and a correctly matched wheel.",fit:"PlayStation 5 / 4 and Windows PC. Xbox compatibility requires an Xbox-licensed wheel.",url:"https://www.fanatec.com/us/en/c/wheel-bases",link:"Fanatec wheel-base range ↗"},
+"fanatec-podium":{brand:"Fanatec",name:"Podium DD",kind:"Direct drive · 25 Nm",description:"A very high-torque premium base, intended for a properly engineered cockpit and experienced users. It is not a sensible first wheel for most desks.",fit:"Windows PC; Xbox when paired with an Xbox-licensed steering wheel. No PlayStation license.",url:"https://www.fanatec.com/us/en/c/wheel-bases",link:"Fanatec wheel-base range ↗"},
+"fanatec-dd1":{brand:"Fanatec",name:"Podium DD1 — older model",kind:"Direct drive · legacy",description:"A discontinued high-torque base that appears on the used market. Inspect the full system and make sure its wheel and quick-release parts work together.",fit:"Windows PC; Xbox with an Xbox-licensed wheel. These are discontinued, so confirm the exact base and rim support before buying used.",url:"https://www.fanatec.com/us/en/s/platform-compatibility",link:"Fanatec platform rules ↗"},
+"fanatec-dd2":{brand:"Fanatec",name:"Podium DD2 — older model",kind:"Direct drive · legacy",description:"A discontinued high-torque base for a sturdy rig. Its used price may still be high, and the full system needs a correctly licensed wheel for console use.",fit:"Windows PC; Xbox with an Xbox-licensed wheel. These are discontinued, so confirm the exact base and rim support before buying used.",url:"https://www.fanatec.com/us/en/s/platform-compatibility",link:"Fanatec platform rules ↗"},
+"hori-overdrive":{brand:"HORI",name:"Racing Wheel Overdrive",kind:"Entry level · Xbox licensed",description:"A lower-cost all-in-one wheel and pedal set for learning the basics. Compare its simpler wheel feel with force-feedback options before choosing.",fit:"Xbox Series X|S / Xbox One and Windows PC. Not a PlayStation model.",url:"https://hori.jp/products/xsx/rw_overdrive/",link:"Official HORI product ↗"},
+"hori-apex":{brand:"HORI",name:"Racing Wheel APEX",kind:"Budget · 270°",description:"A simple 270-degree wheel and pedal set for basic steering practice. HORI does not list motor-driven force feedback for this model, so compare its simpler feel and game support with FFB wheels before buying.",fit:"PlayStation 5 / 4 and Windows PC. Check your game’s compatibility list.",url:"https://stores.horiusa.com/racing-wheel-apex-for-playstation-5-playstation-4-and-windows-11-10/",link:"Official HORI APEX ↗"},
+"hori-wireless":{brand:"HORI",name:"Wireless Racing Wheel APEX",kind:"Entry level · PS/PC",description:"A wireless PlayStation APEX option from HORI. Check the official model number and game-compatibility list, as APEX variants differ by region and generation.",fit:"PlayStation 5 / 4 and Windows PC for the supported model. This is not the Xbox Overdrive.",url:"https://stores.horiusa.com/SPF-022U/compatibility/",link:"Official HORI compatibility list ↗"},
+"hori-ffb":{brand:"HORI",name:"Force Feedback Racing Wheel DLX",kind:"Motor-driven force feedback",description:"A full-size Xbox bundle with a three-pedal unit, metal paddle shifters, and adjustable motor-driven force feedback. HORI advises updating its firmware before first use; game support varies.",fit:"Xbox Series X|S / Xbox One and Windows PC. Switch between Xbox and PC modes on the wheel.",url:"https://stores.horiusa.com/force-feedback-racing-wheel-dlx-designed-for-xbox-series-x-s-xbox-one/",link:"Official HORI product details ↗"},
+"hori-wireless-overdrive":{brand:"HORI",name:"Wireless Racing Wheel Overdrive",kind:"Entry level · wireless Xbox",description:"A wireless Xbox wheel with pedals and programmable profiles. It has no vibration or force feedback, and HORI says wireless play is not supported on Windows PC.",fit:"Xbox Series X|S / Xbox One. PC connection is for the companion app; do not count on wireless PC gameplay.",url:"https://stores.horiusa.com/mbs-016/",link:"Official HORI product details ↗"},
+"hori-apex-formula":{brand:"HORI",name:"Racing Wheel APEX FORMULA",kind:"Upcoming · spring resistance",description:"An upcoming Formula-style PlayStation wheel with a 270-degree spring-tension steering mechanism, analogue pedals, and customizable controls. HORI lists an expected release date of November 5, 2026.",fit:"Expected compatibility: PlayStation 5 / 4 and Windows 11 PC. It is not a motor-driven force-feedback wheel.",url:"https://stores.horiusa.com/spf-079/",link:"Official HORI product details ↗"}
+};
+const CATALOG = {
+xbox:["g920","g923-x","pro-x","t598-x","t128-x","t248-x","tmx","tx","tsxw","t98-x","ferrari458","moza-r3-x","moza-r12-x","fanatec-csl","fanatec-gtdd","fanatec-csdd","fanatec-csddplus","fanatec-podium","fanatec-dd1","fanatec-dd2","hori-ffb","hori-overdrive","hori-wireless-overdrive"],
+playstation:["g29","g923-ps","pro-ps","t598-ps","t128-ps","t248-ps","t150","t300","t500","tgt","t248r","t98-ps","t80","fanatec-gtdd","fanatec-csl-elite","fanatec-csddplus","hori-apex","hori-wireless","hori-apex-formula"],
+pc:["pc-g29","pc-g923","pc-pro","pc-t128","pc-t248","pc-t300","pc-t598","t818","moza-r3-pc","moza-r5","moza-r9","moza-r12","fanatec-csl","fanatec-gtdd","fanatec-csdd"],
+budget:["hori-apex","pc-t128","pc-g29","pc-tmx-t150","moza-r3-pc"]
+};
+MODEL_DATA["pc-g29"]={brand:"Logitech",name:"G29 / G920 Driving Force",kind:"Gear-driven force feedback · 2.3 Nm",description:"A familiar and widely supported first FFB wheel. The two model names describe separate licensed versions, not one universal console model.",fit:"Windows PC. For consoles choose the G920 for Xbox or G29 for PlayStation.",url:"https://www.logitechg.com/en-us/products/driving/driving-force-racing-wheel.html",link:"Official G29 / G920 details ↗"};
+MODEL_DATA["pc-g923"]={brand:"Logitech",name:"G923 TRUEFORCE",kind:"Gear-driven force feedback · 2.3 Nm",description:"A familiar gear-driven wheel with TRUEFORCE effects in supported games. The Xbox and PlayStation versions are separate.",fit:"Windows PC; the console variants also support their matching Xbox or PlayStation platform.",url:"https://www.logitechg.com/en-us/shop/p/g923-trueforce-sim-racing-wheel.941-000156",link:"Official G923 details ↗"};
+MODEL_DATA["pc-pro"]={brand:"Logitech",name:"PRO Racing Wheel — PC version",kind:"Direct drive · 11 Nm",description:"A premium high-torque direct-drive wheelbase. Logitech sells separate Xbox, PlayStation, and PC-only versions; this listing is the PC-only one.",fit:"Windows PC. Use the console-licensed version if you need Xbox or PlayStation.",url:"https://www.logitechg.com/en-us/products/driving/pro-racing-wheel.html",link:"Official PRO wheel details ↗"};
+MODEL_DATA["pc-t128"]={brand:"Thrustmaster",name:"T128 — PC-compatible versions",kind:"Hybrid-drive force feedback",description:"An accessible all-in-one wheel with force feedback. The Xbox and PlayStation versions have different console licenses; both are listed by Thrustmaster for PC.",fit:"Windows PC. On a console, buy the correct Xbox or PlayStation version.",url:"https://support.thrustmaster.com/en/kb/1801-en/",link:"Official platform compatibility ↗"};
+MODEL_DATA["pc-t248"]={brand:"Thrustmaster",name:"T248 — PC-compatible versions",kind:"Hybrid-drive force feedback",description:"A fixed-rim wheel with a display and adjustable feedback. The console variants differ but each is listed as PC-compatible.",fit:"Windows PC. Check the model suffix if you later want console use.",url:"https://support.thrustmaster.com/en/kb/1801-en/",link:"Official platform compatibility ↗"};
+MODEL_DATA["pc-t300"]={brand:"Thrustmaster",name:"T300 RS / RS GT",kind:"Belt-driven force feedback",description:"A detachable-rim belt-driven wheel for someone who wants a smoother step beyond entry gear-driven hardware.",fit:"Windows PC; the licensed console version is PlayStation. Not Xbox.",url:"https://support.thrustmaster.com/en/kb/1801-en/",link:"Official platform compatibility ↗"};
+MODEL_DATA["pc-t598"]={brand:"Thrustmaster",name:"T598 — PC-compatible versions",kind:"Direct drive",description:"A current direct-drive option sold in separate Xbox and PlayStation console versions; both variants also work with a Windows PC.",fit:"Windows PC. Select the console license only if you plan to plug it into Xbox or PlayStation.",url:"https://support.thrustmaster.com/en/kb/1801-en/",link:"Official platform compatibility ↗"};
+MODEL_DATA["pc-tmx-t150"]={brand:"Thrustmaster",name:"TMX / T150 — older models",kind:"Used-market force feedback",description:"Two older platform-specific entry FFB wheels: TMX is the Xbox model and T150 the PlayStation model. Used units can be a value choice if complete and in good condition.",fit:"Windows PC with the correct drivers; TMX is Xbox-licensed and T150 is PlayStation-licensed.",url:"https://support.thrustmaster.com/en/kb/1801-en/",link:"Official platform compatibility ↗"};
+</script>
+<script>
+const platformButtons=Array.from(document.querySelectorAll("[data-platform]"));
+const pcViewButtons=Array.from(document.querySelectorAll("[data-pc-view]"));
+const pcViewGroup=document.querySelector("#pc-view-group");
+const brandFilters=document.querySelector("#brand-filters");
+const productGrid=document.querySelector("#product-grid");
+const catalogStatus=document.querySelector("#catalog-status");
+const catalogIntro=document.querySelector("#catalog-intro");
+const productSearch=document.querySelector("#product-search");
+const emptyResults=document.querySelector("#empty-results");
+let selectedPlatform="xbox";
+let selectedPCView="all";
+let selectedBrand="All brands";
+function escapeText(value){return String(value).replace(/[&<>"]/g,function(c){return {"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]})}
+function currentIds(){return selectedPlatform==="pc"?(selectedPCView==="budget"?CATALOG.budget:CATALOG.pc):CATALOG[selectedPlatform]}
+function setPlatform(name){
+ selectedPlatform=name;
+ selectedBrand="All brands";
+ platformButtons.forEach(function(button){button.setAttribute("aria-pressed",String(button.dataset.platform===name))});
+ pcViewGroup.hidden=name!=="pc";
+ if(name==="pc"){
+  catalogIntro.textContent=selectedPCView==="budget"?"Five budget-minded PC choices, from basic steering practice to an entry direct-drive bundle. They are not a price ranking; compare the current full bundle cost.":"A 15-model PC shortlist across entry, midrange, and premium choices. It is a curated comparison list, not a claim that one wheel is fastest.";
+ }else if(name==="xbox"){
+  catalogIntro.textContent="Verified Xbox options, including current models and common older products from Logitech, Thrustmaster, MOZA, Fanatec, and HORI. Exact licensed versions and required components are called out.";
+ }else{
+  catalogIntro.textContent="Verified PlayStation options, including current models and common older products from Logitech, Thrustmaster, Fanatec, and HORI. Exact licensed versions are called out.";
+ }
+ renderCatalog();
+}
+function setPCView(name){
+ selectedPCView=name;
+ selectedBrand="All brands";
+ pcViewButtons.forEach(function(button){button.setAttribute("aria-pressed",String(button.dataset.pcView===name))});
+ setPlatform("pc");
+}
+function renderBrandFilters(products){
+ const brands=["All brands"].concat(Array.from(new Set(products.map(function(p){return p.brand}))).sort());
+ brandFilters.innerHTML="";
+ brands.forEach(function(brand){
+  const button=document.createElement("button");
+  button.type="button";
+  button.className="brand-filter-button";
+  button.textContent=brand;
+  button.setAttribute("aria-pressed",String(brand===selectedBrand));
+  button.addEventListener("click",function(){selectedBrand=brand;renderCatalog()});
+  brandFilters.appendChild(button);
+ });
+}
+function renderCatalog(){
+ const base=currentIds().map(function(id){return MODEL_DATA[id]}).filter(Boolean);
+ renderBrandFilters(base);
+ const query=productSearch.value.trim().toLowerCase();
+ const shown=base.filter(function(item){
+  const brandOk=selectedBrand==="All brands"||item.brand===selectedBrand;
+  const text=[item.brand,item.name,item.kind,item.description,item.fit].join(" ").toLowerCase();
+  return brandOk&&(!query||text.indexOf(query)!==-1);
+ });
+ productGrid.innerHTML="";
+ shown.forEach(function(item){
+  const card=document.createElement("article");
+  card.className="product-card"+(selectedPlatform==="pc"&&selectedPCView==="budget"?" budget-card":"");
+  card.innerHTML='<div class="product-card-head"><span class="product-brand">'+escapeText(item.brand)+'</span><span class="product-kind">'+escapeText(item.kind)+'</span></div><h3>'+escapeText(item.name)+'</h3><p>'+escapeText(item.description)+'</p><p class="product-fit"><strong>Compatibility:</strong> '+escapeText(item.fit)+'</p><a class="product-link" href="'+escapeText(item.url)+'" target="_blank" rel="noopener noreferrer">'+escapeText(item.link)+'</a>';
+  productGrid.appendChild(card);
+ });
+ const label=selectedPlatform==="pc"?(selectedPCView==="budget"?"budget PC picks":"PC picks"):selectedPlatform==="xbox"?"Xbox options":"PlayStation options";
+ catalogStatus.textContent="Showing "+shown.length+" of "+base.length+" "+label+(selectedBrand==="All brands"?"":" · "+selectedBrand);
+ emptyResults.hidden=shown.length>0;
+}
+platformButtons.forEach(function(button){button.addEventListener("click",function(){setPlatform(button.dataset.platform)})});
+pcViewButtons.forEach(function(button){button.addEventListener("click",function(){setPCView(button.dataset.pcView)})});
+productSearch.addEventListener("input",renderCatalog);
+setPlatform("xbox");
+</script>
 <footer class="site-footer shell"><span>Made for the next generation of racers.</span><a href="index.html?section=guides">ALL GUIDES</a><button type="button" id="back-to-top" class="back-top" aria-label="Back to top"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 20V4M5 11l7-7 7 7"/></svg><span>BACK TO TOP</span></button></footer>
 <script>
 const backTopButton=document.querySelector('#back-to-top'),pageFooter=document.querySelector('.site-footer');
